@@ -6,13 +6,13 @@ The purpose of this app is to recommend beers to users based on their location a
 
 ## Wireframes
 
-<img src="homepage.png"
+<img src="./wireframes/homepage.png"
      style= "height:350px; width:500px;" />
-<img src="search.png"
+<img src="./wireframes/search.png"
      style= "height:350px; width:500px;" />
-<img src="Austinfavs.png"
+<img src="./wireframes/Austinfavs.png"
      style="height:350px; width:500px;" />
-<img src="dereksfavs.png"
+<img src="./wireframes/dereksfavs.png"
      style="height:350px; width:500px;" />
 
 
