@@ -7,31 +7,34 @@ The purpose of this app is to recommend beers to users based on their location a
 ## Wireframes
 
 <img src="homepage.png"
-     style= "height:400px; width:600px;" />
+     style= "height:350px; width:500px;" />
 <img src="search.png"
-     style= "height:400px; width:600px;" />
+     style= "height:350px; width:500px;" />
 <img src="Austinfavs.png"
-     style="height:400px; width:600px;" />
+     style="height:350px; width:500px;" />
 <img src="dereksfavs.png"
-     style="height:400px; width:600px;" />
+     style="height:350px; width:500px;" />
 
 
 ## User Stories
 
-- I am looking for beers in a new city, based off the types of styles I know I like from past experiences.
-- I am interested in trying a new style, and have no idea where to find it.
-- I can create a user account that allows me to remember my favorite beers.
+- I can create a username using an e-mail and password.
+- When I sign into my account after signup, I will be brought to a page with a search option and previously saved favorite beers.
+- I can search for a specific beer style in a city, and get back all beers of that syle in that city.
+- I can search for a city and get all beers brewed in that city.
+- I can search for a style and get back all beers of that style.
+
 
 ## Routes Inventory
 
 | Verb |     Path    |                Summary                |
 |:----:|:-----------:|:-------------------------------------:|
-|  GET |    /city    |       search for beers in a city      |  
-|  GET | /city/style | search for beers of a style in a city |   
-|  PUT |    /save    |     save favorite beers to profile    |  
-|  PUT |    /user/   |          create user account          |   
-|  PUT | /user/login |         login to user account         |  
-|  PUT |  /user/save |     save favorite beers to profile    |  
+|  GET |    /cities    |       search for beers in a city      |  
+|  GET | /cities/:cityid/styles/:styleid | search for beers of a style in a city |   
+|  PUT |    /favBeers/:id    |     save favorite beers to profile    |  
+|  POST |    /users/   |          create user account          |   
+|  POST | /users/login |         login to user account         |  
+|DELETE |  /favBeers/:id |     delete favorite beers from profile    |  
 
 ## MVP Checklist
 
