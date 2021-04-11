@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css"href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li style="float:left"><a>Home</a></li>
+            <li style="float:right"><a>Login</a></li>
+            <li style="float:right"><a>Sign Up</a></li>
+            <li style="float:right"><a>Log Out</a></li>
+            <li style="float:right"><a>Profile</a></li>
+        </ul>
+    </nav>
+    <div class="signUpScreen">
+        <form class="signup-form">
+            <label for="signup-name">Name</label>
+            <input type="text" id="signup-name">
+            
+            <label for="signup-email">Email</label>
+            <input type="text" id="signup-email">
+            
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password">
+      
+            <input type="submit" value="Sign Up!">
+        </form>
+    </div>
+    <div class="loginScreen hidden">
+        <form class="login-form">
+            <label for="login-email">Email</label>
+            <input type="text" id="login-email">
+            
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password">
+      
+            <input type="submit" value="Log In!">
+          </form>
+    </div>
+    <div class="searchScreen hidden">
+        <form class="search-form">
+            <label for="search-name">City</label>
+            <input type="text" id="search-city">
+            <input type="submit" value="Search">
+        </form>
+    <div class="dashboardScreen hidden">
+
+    </div>
+
+<script async defer src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js "></script>
+<script async defer src="./main.js"></script>
+</body>
+</html>

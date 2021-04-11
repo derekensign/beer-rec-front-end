@@ -1,0 +1,51 @@
+nav ul li { 
+  list-style:none;
+  margin:10px;
+  float: right;
+}
+
+nav ul li:first-child { 
+    float: left;
+}
+
+nav {
+    overflow: auto;
+    max-width: 100%;
+    width: 1960px;
+    background-color: grey;
+}
+
+a:hover{
+    background-color: #C6E9FF;
+    cursor: pointer;
+  }
+
+
+.hidden {
+      display: none;
+  }
+
+  /* Bordered form */
+form {
+    display: flex;
+    border: 3px solid #f1f1f1;
+    flex-direction: column;
+    margin: auto;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 200px;
+    margin-left: 100;
+  }
+  
+  /* Full-width inputs */
+  input[type=text], input[type=password] {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    text-align: center;
+
+  }
