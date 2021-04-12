@@ -17,5 +17,10 @@
   "bugs": {
     "url": "https://github.com/derekensign/beer-rec-front-end/issues"
   },
-  "homepage": "https://github.com/derekensign/beer-rec-front-end#readme"
+  "homepage": "https://github.com/derekensign/beer-rec-front-end#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "path": "^0.12.7",
+    "replace-in-file": "^6.2.0"
+  }
 }
