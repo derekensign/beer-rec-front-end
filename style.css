@@ -30,12 +30,22 @@ form {
     display: flex;
     border: 3px solid #f1f1f1;
     flex-direction: column;
-    margin: auto;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+    padding-top: 50px;
+    padding-bottom: 50px;
+    width: 30%;
     align-items: center;
-    margin: 200px;
-    margin-left: 100;
+    justify-content: center;
+    margin: auto;
+    margin-top: 150px;
   }
+
+.form-container {
+    align-items: center;
+    justify-content: center;
+    width: 1960px;
+    max-width: 100%;
+}
   
   /* Full-width inputs */
   input[type=text], input[type=password] {
