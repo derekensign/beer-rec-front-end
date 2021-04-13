@@ -56,7 +56,7 @@ document.querySelector('.signup-form').addEventListener('submit', async (event) 
         const response = await axios.post(`${backEndUrl}/users`, {
             name: document.querySelector('#signup-name').value,
             email: document.querySelector('#signup-email').value,
-            password: document.querySelector('#signup-password').value,
+            password: document.querySelector('#signup-password').value
         })
 
         console.log(response)
@@ -84,7 +84,7 @@ document.querySelector('.login-form').addEventListener('submit', async (event) =
     try {
         const response = await axios.post(`${backEndUrl}/users/login`, {
             email: document.querySelector('#login-email').value,
-            password: document.querySelector('#login-password').value,
+            password: document.querySelector('#login-password').value
         })
 
         console.log(response)
@@ -102,3 +102,45 @@ document.querySelector('.login-form').addEventListener('submit', async (event) =
         alert(error)
     }
 })
+
+document.querySelector('.search-form').addEventListener('submit', async (event) => {
+    event.preventDefault()
+
+    try {
+        let searchStyle = document.querySelector('#search-style').value
+
+        console.log(searchStyle)
+
+        const response = await axios.get(`${backEndUrl}/beers/search`, {
+            style: searchStyle
+        })
+
+        console.log(response.data)
+
+        // for(let i = 0; i < beers.length; i++) {
+        //     //Create new html elements and store them to variables
+        //     let newDiv = document.createElement('div')
+        //     let newName = document.createElement('h5')
+        //     let newImage = document.createElement('img')
+        //     let newBrewery = document.createElement('p')
+
+        //     //append the created elements to the created DIV
+        //     newDiv.appendChild(newImage)
+        //     newDiv.appendChild(newName)
+        //     newDiv.appendChild(newBrewery)
+
+        //     //Change the elements display info
+        //     newName.innerText = beers[i].name
+        //     newImage.src = beers[i].picture
+        //     newCountry.innerText = beers[i].brewery
+            
+        //     // give the created div class of winediv and attach 
+        //     //it to wineinfo to display it on the screen
+        //     newDiv.classList.add("beer")
+        //     document.querySelector('.searchScreen').appendChild(newDiv)
+        // }
+    } catch (error) {
+        console.log({error})
+    }
+})
+    
