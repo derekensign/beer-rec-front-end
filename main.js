@@ -111,34 +111,32 @@ document.querySelector('.search-form').addEventListener('submit', async (event) 
 
         console.log(searchStyle)
 
-        const response = await axios.get(`${backEndUrl}/beers/search`, {
-            style: searchStyle
-        })
+        const beers = await axios.get(`${backEndUrl}/beers/search?style=${searchStyle}`)
 
-        console.log(response.data)
+        console.log(beers.data)
 
-        // for(let i = 0; i < beers.length; i++) {
-        //     //Create new html elements and store them to variables
-        //     let newDiv = document.createElement('div')
-        //     let newName = document.createElement('h5')
-        //     let newImage = document.createElement('img')
-        //     let newBrewery = document.createElement('p')
+        for(let i = 0; i < beers.data.length; i++) {
+            //Create new html elements and store them to variables
+            let newDiv = document.createElement('div')
+            let newName = document.createElement('h5')
+            let newImage = document.createElement('img')
+            let newBrewery = document.createElement('p')
 
-        //     //append the created elements to the created DIV
-        //     newDiv.appendChild(newImage)
-        //     newDiv.appendChild(newName)
-        //     newDiv.appendChild(newBrewery)
+            //append the created elements to the created DIV
+            newDiv.appendChild(newImage)
+            newDiv.appendChild(newName)
+            newDiv.appendChild(newBrewery)
 
-        //     //Change the elements display info
-        //     newName.innerText = beers[i].name
-        //     newImage.src = beers[i].picture
-        //     newCountry.innerText = beers[i].brewery
+            //Change the elements display info
+            newName.innerText = beers.data[i].name
+            newImage.src = beers.data[i].imageurl
+            newBrewery.innerText = beers.data[i].brewery
             
-        //     // give the created div class of winediv and attach 
-        //     //it to wineinfo to display it on the screen
-        //     newDiv.classList.add("beer")
-        //     document.querySelector('.searchScreen').appendChild(newDiv)
-        // }
+            // give the created div class of winediv and attach 
+            //it to wineinfo to display it on the screen
+            newDiv.classList.add("beer")
+            document.querySelector('#searchScreen').appendChild(newDiv)
+        }
     } catch (error) {
         console.log({error})
     }
