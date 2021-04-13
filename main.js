@@ -39,6 +39,12 @@ const switchToSignup = () => {
 }
 
 
+const saveBeer = async (beerId) => {
+    let userId = localStorage.getItem('userId')
+    let response = await axios.post(`${backEndUrl}/beers/${userId}/favorite/${beerId}`)
+    console.log(response)
+}
+
 document.querySelector('#signup-link').addEventListener('click', async (event) => {
     event.preventDefault()
     switchToSignup()
@@ -118,24 +124,33 @@ document.querySelector('.search-form').addEventListener('submit', async (event) 
         for(let i = 0; i < beers.data.length; i++) {
             //Create new html elements and store them to variables
             let newDiv = document.createElement('div')
-            let newName = document.createElement('h5')
+            let newName = document.createElement('h3')
             let newImage = document.createElement('img')
             let newBrewery = document.createElement('p')
+            let saveButton = document.createElement('button')
 
             //append the created elements to the created DIV
             newDiv.appendChild(newImage)
             newDiv.appendChild(newName)
             newDiv.appendChild(newBrewery)
+            newDiv.appendChild(saveButton)
 
             //Change the elements display info
             newName.innerText = beers.data[i].name
             newImage.src = beers.data[i].imageurl
             newBrewery.innerText = beers.data[i].brewery
+            beerId = beers.data[i].id
+            saveButton.innerHTML = 'Favorite'
             
             // give the created div class of winediv and attach 
             //it to wineinfo to display it on the screen
             newDiv.classList.add("beer")
             document.querySelector('#searchScreen').appendChild(newDiv)
+
+            saveButton.addEventListener('click', async (event) => {
+                event.preventDefault()
+                saveBeer(beerId)     
+            })
         }
     } catch (error) {
         console.log({error})
