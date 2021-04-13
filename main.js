@@ -41,7 +41,11 @@ const switchToSignup = () => {
 
 const saveBeer = async (beerId) => {
     let userId = localStorage.getItem('userId')
-    let response = await axios.post(`${backEndUrl}/beers/${userId}/favorite/${beerId}`)
+    let response = await axios.post(`${backEndUrl}/beers/${beerId}/favorite/`, {}, {
+            headers: {
+                authorization: userId
+            }
+    })
     console.log(response)
 }
 
@@ -139,7 +143,8 @@ document.querySelector('.search-form').addEventListener('submit', async (event) 
             newName.innerText = beers.data[i].name
             newImage.src = beers.data[i].imageurl
             newBrewery.innerText = beers.data[i].brewery
-            beerId = beers.data[i].id
+            let beerId = beers.data[i].id
+            console.log(`beer id is ${beerId}`)
             saveButton.innerHTML = 'Favorite'
             
             // give the created div class of winediv and attach 
