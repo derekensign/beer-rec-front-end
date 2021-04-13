@@ -10,14 +10,16 @@
 <body>
     <nav>
         <ul>
-            <li style="float:left" id="user-name"><a></a></li>
+            <li class ="hidden" style="float:left" id="user-name"><a></a></li>
             <li style="float:left" id="profile-link"><a>Profile</a></li>
-            <li style="float:right" id="login-link"><a>Login</a></li>
+            <li class="hidden" style="float:right" id="logout-link"><a>Log Out</a></li>
             <li style="float:right" id="signup-link"><a>Sign Up</a></li>
-            <li style="float:right" id="logout-link hidden"><a>Log Out</a></li>
-
+            <li style="float:right" id="login-link"><a>Login</a></li>
         </ul>
     </nav>
+    <div class = "form-container" id="homeScreen">
+        <h2>Welcome to BeerRec!</h2>
+    </div>
     <div class = "form-container" id="signUpScreen">
         <form class="signup-form">
             <label for="signup-name">Name</label>

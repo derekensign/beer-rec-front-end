@@ -22,11 +22,32 @@ const openProfile = () => {
     }
 }
 
+const getAllBeers = () => {
+
+}
+
 const switchToLogin = () => {
-    // profile.classList.add('hidden')
+    profile.classList.add('hidden')
     signUpScreen.classList.add('hidden')
     loginScreen.classList.remove('hidden')
 }
+
+const switchToSignup = () => {
+    profile.classList.add('hidden')
+    signUpScreen.classList.remove('hidden')
+    loginScreen.classList.add('hidden')
+}
+
+
+document.querySelector('#signup-link').addEventListener('click', async (event) => {
+    event.preventDefault()
+    switchToSignup()
+})
+
+document.querySelector('#login-link').addEventListener('click', async (event) => {
+    event.preventDefault()
+    switchToLogin()
+})
 
 document.querySelector('.signup-form').addEventListener('submit', async (event) => {
     event.preventDefault()
@@ -73,7 +94,7 @@ document.querySelector('.login-form').addEventListener('submit', async (event) =
         localStorage.setItem('userId', response.data.user.id)
         localStorage.setItem('userName', response.data.user.name)
 
-        getAllBeers()
+        // getAllBeers()
         openProfile()
 
     } catch (error) {
