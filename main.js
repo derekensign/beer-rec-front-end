@@ -147,10 +147,10 @@ document.querySelector('.search-form').addEventListener('submit', async (event) 
             console.log(`beer id is ${beerId}`)
             saveButton.innerHTML = 'Favorite'
             
-            // give the created div class of winediv and attach 
-            //it to wineinfo to display it on the screen
-            newDiv.classList.add("beer")
-            document.querySelector('#searchScreen').appendChild(newDiv)
+            // give the created div class of beerdriv and attach 
+            //it to searchResults to display it on the screen
+            newDiv.classList.add("beerdiv")
+            document.querySelector('.searchResults').appendChild(newDiv)
 
             saveButton.addEventListener('click', async (event) => {
                 event.preventDefault()
