@@ -5,37 +5,95 @@ const signUpForm = document.querySelector('.signup-form')
 
 const loginScreen = document.querySelector('#loginScreen')
 const profile = document.querySelector('#profile')
+const searchScreen = document.querySelector('#searchScreen')
+const searchResults = document.querySelector('.searchResults')
 
 const signUpLink = document.querySelector('#signup-link')
 const loginLink = document.querySelector('#login-link')
 const logoutLink = document.querySelector('#logout-link')
 const profileLink = document.querySelector('#profile-link')
 
-const openProfile = () => {
-    profile.classList.remove('hidden')
+const openProfile = async (req,res) => {
+    try {
+        let userId = localStorage.getItem('userId')
+        console.log(`user id is ${userId}`)
+        let beers = await axios.get(`${backEndUrl}/users/beers?id=${userId}`)
+
+        console.log(beers.data)
+
+    } catch (error) {
+        console.log('error!')
+        res({error})
+    }
+
+
+    // profile.classList.remove('hidden')
+    // signUpScreen.classList.add('hidden')
+    // loginScreen.classList.add('hidden')
+    // searchScreen.classList.add('hidden')
+    // searchResults.classList.add('hidden')
+    // let userName = document.querySelector('#user-name')
+    // let usersName = localStorage.getItem('userName')
+    // if(usersName !== undefined) {
+    //     userName.innerText = `Hello, ${usersName}`
+    // }
+
+    // for(let i = 0; i < beers.data.length; i++) {
+    //     //Create new html elements and store them to variables
+    //     let newDiv = document.createElement('div')
+    //     let newName = document.createElement('h3')
+    //     let imageWrap = document.createElement('div')
+    //     let newImage = document.createElement('img')
+    //     let newBrewery = document.createElement('p')
+    //     let description = document.createElement('p')
+    //     let saveButton = document.createElement('button')
+
+    //     //append the created elements to the created DIV
+    //     newDiv.appendChild(imageWrap)
+    //     imageWrap.appendChild(newImage)
+    //     imageWrap.appendChild(description)
+    //     newDiv.appendChild(newName)
+    //     newDiv.appendChild(newBrewery)
+    //     newDiv.appendChild(saveButton)
+
+    //     //Change the elements display info
+    //     newName.innerText = beers.data[i].name
+    //     newImage.src = beers.data[i].imageurl
+    //     newBrewery.innerText = beers.data[i].brewery
+    //     let beerId = beers.data[i].id
+    //     saveButton.innerHTML = 'Favorite'
+    //     description.innerText = beers.data[i].description
+    //     description.classList.add('description-text')
+    //     imageWrap.classList.add('image-wrap')
+        
+    //     // give the created div class of beerdriv and attach 
+    //     //it to searchResults to display it on the screen
+    //     newDiv.classList.add("beerdiv")
+    //     document.querySelector('.searchResults').appendChild(newDiv)
+    // }
+}
+
+const switchToSearch = () => {
+    profile.classList.add('hidden')
     signUpScreen.classList.add('hidden')
     loginScreen.classList.add('hidden')
-    let userName = document.querySelector('#user-name')
-    let usersName = localStorage.getItem('userName')
-    if(usersName !== undefined) {
-        userName.innerText = `Hello, ${usersName}`
-    }
+    searchScreen.classList.remove('hidden')
+    searchResults.classList.remove('hidden')
 }
-
-const getAllBeers = () => {
-
-}
-
 const switchToLogin = () => {
     profile.classList.add('hidden')
     signUpScreen.classList.add('hidden')
     loginScreen.classList.remove('hidden')
+    searchScreen.classList.add('hidden')
+    searchResults.classList.add('hidden')
 }
 
 const switchToSignup = () => {
     profile.classList.add('hidden')
     signUpScreen.classList.remove('hidden')
     loginScreen.classList.add('hidden')
+    searchScreen.classList.add('hidden')
+    searchResults.classList.add('hidden')
 }
 
 
@@ -56,7 +114,12 @@ document.querySelector('#signup-link').addEventListener('click', async (event) =
 
 document.querySelector('#login-link').addEventListener('click', async (event) => {
     event.preventDefault()
-    switchToLogin()
+    openProfile()
+})
+
+document.querySelector('#profile-link').addEventListener('click', async (event) => {
+    event.preventDefault()
+    openProfile()
 })
 
 document.querySelector('.signup-form').addEventListener('submit', async (event) => {
@@ -85,7 +148,6 @@ document.querySelector('.signup-form').addEventListener('submit', async (event) 
         alert('This e-mail is already associated with an account')
     }
 })
-
 
 
 document.querySelector('.login-form').addEventListener('submit', async (event) => {
@@ -150,7 +212,6 @@ document.querySelector('.search-form').addEventListener('submit', async (event) 
             let beerId = beers.data[i].id
             saveButton.innerHTML = 'Favorite'
             description.innerText = beers.data[i].description
-            console.log(description.innerText)
             description.classList.add('description-text')
             imageWrap.classList.add('image-wrap')
             
