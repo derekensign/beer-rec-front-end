@@ -12,65 +12,61 @@ const signUpLink = document.querySelector('#signup-link')
 const loginLink = document.querySelector('#login-link')
 const logoutLink = document.querySelector('#logout-link')
 const profileLink = document.querySelector('#profile-link')
+const searchLink = document.querySelector('#search-link')
 
 const openProfile = async (req,res) => {
-    try {
-        let userId = localStorage.getItem('userId')
-        console.log(`user id is ${userId}`)
-        let beers = await axios.get(`${backEndUrl}/users/beers?id=${userId}`)
 
-        console.log(beers.data)
-
-    } catch (error) {
-        console.log('error!')
-        res({error})
+    while(searchResults.firstChild !== null) {
+        searchResults.removeChild(searchResults.lastChild)
     }
 
+    let userId = localStorage.getItem('userId')
 
-    // profile.classList.remove('hidden')
-    // signUpScreen.classList.add('hidden')
-    // loginScreen.classList.add('hidden')
-    // searchScreen.classList.add('hidden')
-    // searchResults.classList.add('hidden')
-    // let userName = document.querySelector('#user-name')
-    // let usersName = localStorage.getItem('userName')
-    // if(usersName !== undefined) {
-    //     userName.innerText = `Hello, ${usersName}`
-    // }
+    let beers = await axios.get(`${backEndUrl}/users/beers?id=${userId}`)
 
-    // for(let i = 0; i < beers.data.length; i++) {
-    //     //Create new html elements and store them to variables
-    //     let newDiv = document.createElement('div')
-    //     let newName = document.createElement('h3')
-    //     let imageWrap = document.createElement('div')
-    //     let newImage = document.createElement('img')
-    //     let newBrewery = document.createElement('p')
-    //     let description = document.createElement('p')
-    //     let saveButton = document.createElement('button')
+    profile.classList.remove('hidden')
+    signUpScreen.classList.add('hidden')
+    loginScreen.classList.add('hidden')
+    searchScreen.classList.add('hidden')
+    searchResults.classList.add('hidden')
+    let userName = document.querySelector('#user-name')
+    let usersName = localStorage.getItem('userName')
+    if(usersName !== undefined) {
+        userName.innerText = `Hello, ${usersName}`
+    }
+    document.querySelector('#user-name').classList.remove('hidden')
 
-    //     //append the created elements to the created DIV
-    //     newDiv.appendChild(imageWrap)
-    //     imageWrap.appendChild(newImage)
-    //     imageWrap.appendChild(description)
-    //     newDiv.appendChild(newName)
-    //     newDiv.appendChild(newBrewery)
-    //     newDiv.appendChild(saveButton)
+    for(let i = 0; i < beers.data.length; i++) {
+        //Create new html elements and store them to variables
+        let newDiv = document.createElement('div')
+        let newName = document.createElement('h3')
+        let imageWrap = document.createElement('div')
+        let newImage = document.createElement('img')
+        let newBrewery = document.createElement('p')
+        let description = document.createElement('p')
 
-    //     //Change the elements display info
-    //     newName.innerText = beers.data[i].name
-    //     newImage.src = beers.data[i].imageurl
-    //     newBrewery.innerText = beers.data[i].brewery
-    //     let beerId = beers.data[i].id
-    //     saveButton.innerHTML = 'Favorite'
-    //     description.innerText = beers.data[i].description
-    //     description.classList.add('description-text')
-    //     imageWrap.classList.add('image-wrap')
+        //append the created elements to the created DIV
+        newDiv.appendChild(imageWrap)
+        imageWrap.appendChild(newImage)
+        imageWrap.appendChild(description)
+        newDiv.appendChild(newName)
+        newDiv.appendChild(newBrewery)
+
+        //Change the elements display info
+        newName.innerText = beers.data[i].name
+        newImage.src = beers.data[i].imageurl
+        newBrewery.innerText = beers.data[i].brewery
+        let beerId = beers.data[i].id
+        description.innerText = beers.data[i].description
+        description.classList.add('description-text')
+        imageWrap.classList.add('image-wrap')
         
-    //     // give the created div class of beerdriv and attach 
-    //     //it to searchResults to display it on the screen
-    //     newDiv.classList.add("beerdiv")
-    //     document.querySelector('.searchResults').appendChild(newDiv)
-    // }
+        // give the created div class of beerdriv and attach 
+        //it to searchResults to display it on the screen
+        newDiv.classList.add("beerdiv")
+        document.querySelector('#profile').appendChild(newDiv)
+
+    }
 }
 
 const switchToSearch = () => {
@@ -107,6 +103,10 @@ const saveBeer = async (beerId) => {
     console.log(response)
 }
 
+const deleteBeer = async (beerId) => {
+
+}
+
 document.querySelector('#signup-link').addEventListener('click', async (event) => {
     event.preventDefault()
     switchToSignup()
@@ -114,7 +114,12 @@ document.querySelector('#signup-link').addEventListener('click', async (event) =
 
 document.querySelector('#login-link').addEventListener('click', async (event) => {
     event.preventDefault()
-    openProfile()
+    switchToLogin()
+})
+
+document.querySelector('#search-link').addEventListener('click', async (event) => {
+    event.preventDefault()
+    switchToSearch()
 })
 
 document.querySelector('#profile-link').addEventListener('click', async (event) => {
@@ -177,6 +182,10 @@ document.querySelector('.login-form').addEventListener('submit', async (event) =
 
 document.querySelector('.search-form').addEventListener('submit', async (event) => {
     event.preventDefault()
+
+    while(searchResults.firstChild !== null) {
+        searchResults.removeChild(searchResults.lastChild)
+    }
 
     try {
         let searchStyle = document.querySelector('#search-style').value
