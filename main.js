@@ -120,6 +120,11 @@ const logout = () => {
     logoutLink.classList.add('hidden')
     profileLink.classList.add('hidden')
     searchLink.classList.add('hidden')
+
+    while(searchResults.firstChild !== null) {
+        searchResults.removeChild(searchResults.lastChild)
+    }
+    
     while(profile.firstChild !== null) {
         profile.removeChild(profile.lastChild)
     }
