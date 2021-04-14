@@ -40,6 +40,8 @@ const openProfile = async (req,res) => {
     loginScreen.classList.add('hidden')
     loginLink.classList.add('hidden')
     logoutLink.classList.remove('hidden')
+    profileLink.classList.remove('hidden')
+    searchLink.classList.remove('hidden')
     searchScreen.classList.add('hidden')
     searchResults.classList.add('hidden')
     let userName = document.querySelector('#user-name')
@@ -106,6 +108,8 @@ const switchToLogin = () => {
     loginScreen.classList.remove('hidden')
     searchScreen.classList.add('hidden')
     searchResults.classList.add('hidden')
+    profileLink.classList.add('hidden')
+    searchLink.classList.add('hidden')
 }
 
 const logout = () => {
@@ -114,6 +118,8 @@ const logout = () => {
     signUpLink.classList.remove('hidden')
     loginLink.classList.remove('hidden')
     logoutLink.classList.add('hidden')
+    profileLink.classList.add('hidden')
+    searchLink.classList.add('hidden')
     while(profile.firstChild !== null) {
         profile.removeChild(profile.lastChild)
     }
@@ -126,6 +132,8 @@ const switchToSignup = () => {
     loginScreen.classList.add('hidden')
     searchScreen.classList.add('hidden')
     searchResults.classList.add('hidden')
+    profileLink.classList.add('hidden')
+    searchLink.classList.add('hidden')
 }
 
 
