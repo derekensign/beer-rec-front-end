@@ -129,12 +129,16 @@ document.querySelector('.search-form').addEventListener('submit', async (event) 
             //Create new html elements and store them to variables
             let newDiv = document.createElement('div')
             let newName = document.createElement('h3')
+            let imageWrap = document.createElement('div')
             let newImage = document.createElement('img')
             let newBrewery = document.createElement('p')
+            let description = document.createElement('p')
             let saveButton = document.createElement('button')
 
             //append the created elements to the created DIV
-            newDiv.appendChild(newImage)
+            newDiv.appendChild(imageWrap)
+            imageWrap.appendChild(newImage)
+            imageWrap.appendChild(description)
             newDiv.appendChild(newName)
             newDiv.appendChild(newBrewery)
             newDiv.appendChild(saveButton)
@@ -144,8 +148,11 @@ document.querySelector('.search-form').addEventListener('submit', async (event) 
             newImage.src = beers.data[i].imageurl
             newBrewery.innerText = beers.data[i].brewery
             let beerId = beers.data[i].id
-            console.log(`beer id is ${beerId}`)
             saveButton.innerHTML = 'Favorite'
+            description.innerText = beers.data[i].description
+            console.log(description.innerText)
+            description.classList.add('description-text')
+            imageWrap.classList.add('image-wrap')
             
             // give the created div class of beerdriv and attach 
             //it to searchResults to display it on the screen
