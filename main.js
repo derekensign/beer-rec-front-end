@@ -7,6 +7,9 @@ const loginScreen = document.querySelector('#loginScreen')
 const profile = document.querySelector('#profile')
 const searchScreen = document.querySelector('#searchScreen')
 const searchResults = document.querySelector('.searchResults')
+const welcome = document.querySelector('#welcome')
+const searchHeader = document.querySelector('#search-header')
+const profileHeader = document.querySelector('#profile-header')
 
 const signUpLink = document.querySelector('#signup-link')
 const loginLink = document.querySelector('#login-link')
@@ -20,13 +23,23 @@ const openProfile = async (req,res) => {
         searchResults.removeChild(searchResults.lastChild)
     }
 
+    while(profile.firstChild !== null) {
+        profile.removeChild(profile.lastChild)
+    }
+
     let userId = localStorage.getItem('userId')
 
     let beers = await axios.get(`${backEndUrl}/users/beers?id=${userId}`)
 
     profile.classList.remove('hidden')
+    welcome.classList.add('hidden')
+    searchHeader.classList.add('hidden')
+    profileHeader.classList.remove('hidden')
     signUpScreen.classList.add('hidden')
+    signUpLink.classList.add('hidden')
     loginScreen.classList.add('hidden')
+    loginLink.classList.add('hidden')
+    logoutLink.classList.remove('hidden')
     searchScreen.classList.add('hidden')
     searchResults.classList.add('hidden')
     let userName = document.querySelector('#user-name')
@@ -70,6 +83,17 @@ const openProfile = async (req,res) => {
 }
 
 const switchToSearch = () => {
+
+    while(searchResults.firstChild !== null) {
+        searchResults.removeChild(searchResults.lastChild)
+    }
+    while(profile.firstChild !== null) {
+        profile.removeChild(profile.lastChild)
+    }
+
+    welcome.classList.add('hidden')
+    searchHeader.classList.remove('hidden')
+    profileHeader.classList.add('hidden')
     profile.classList.add('hidden')
     signUpScreen.classList.add('hidden')
     loginScreen.classList.add('hidden')
@@ -82,6 +106,18 @@ const switchToLogin = () => {
     loginScreen.classList.remove('hidden')
     searchScreen.classList.add('hidden')
     searchResults.classList.add('hidden')
+}
+
+const logout = () => {
+    localStorage.clear()
+    loginStatusCheck()
+    signUpLink.classList.remove('hidden')
+    loginLink.classList.remove('hidden')
+    logoutLink.classList.add('hidden')
+    while(profile.firstChild !== null) {
+        profile.removeChild(profile.lastChild)
+    }
+    
 }
 
 const switchToSignup = () => {
@@ -127,6 +163,11 @@ document.querySelector('#profile-link').addEventListener('click', async (event) 
     openProfile()
 })
 
+document.querySelector('#logout-link').addEventListener('click', async (event) => {
+    event.preventDefault()
+    logout()
+})
+
 document.querySelector('.signup-form').addEventListener('submit', async (event) => {
     event.preventDefault()
 
@@ -146,7 +187,6 @@ document.querySelector('.signup-form').addEventListener('submit', async (event) 
 
         openProfile()
 
-        // document.querySelector('#signUpScreen').classList.add('hidden')
 
     } catch (error) {
         console.log({error: error})
@@ -171,7 +211,6 @@ document.querySelector('.login-form').addEventListener('submit', async (event) =
         localStorage.setItem('userId', response.data.user.id)
         localStorage.setItem('userName', response.data.user.name)
 
-        // getAllBeers()
         openProfile()
 
     } catch (error) {
@@ -186,6 +225,7 @@ document.querySelector('.search-form').addEventListener('submit', async (event) 
     while(searchResults.firstChild !== null) {
         searchResults.removeChild(searchResults.lastChild)
     }
+
 
     try {
         let searchStyle = document.querySelector('#search-style').value
@@ -238,4 +278,18 @@ document.querySelector('.search-form').addEventListener('submit', async (event) 
         console.log({error})
     }
 })
+
+const loginStatusCheck = () => {
+    const userId = localStorage.getItem('userId')
+    if (userId) {
+        let userName = document.querySelector('.userName')
+        let usersName = localStorage.getItem('userName')
+        userName.innerText = usersName
+        openProfile()
+    } else {
+        switchToLogin()
+    }
+}
+
+loginStatusCheck()
     

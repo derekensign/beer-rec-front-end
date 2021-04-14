@@ -29,12 +29,11 @@ a:hover{
       display: none;
   }
 
-  /* Bordered form */
+
 form {
     display: flex;
     border: 3px solid #f1f1f1;
     flex-direction: column;
-    /* flex-wrap: wrap; */
     padding-top: 50px;
     padding-bottom: 50px;
     width: 30%;
@@ -115,10 +114,6 @@ form {
   padding: auto;
 }
 
-/* .beerdiv img:hover {
-  opacity: 25%;
-} */
-
 .description-text {
   color: white;
   font-size: 20px;
@@ -131,15 +126,7 @@ form {
   transition: opacity .2s, visibility .2s;
 }
 
-/* .image-wrap:hover img{
-  opacity: .2;
-} */
-
 .image-wrap:hover .description-text {
   visibility: visible;
   opacity: 1;
 }
-
-/* .description-box:hover{
-  display: contents;
-} */
