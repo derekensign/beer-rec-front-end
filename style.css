@@ -103,6 +103,18 @@ form {
     padding: auto;
 }
 
+#profile {
+  width: 1000px;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center; 
+  margin: 40px auto;
+  padding: auto;
+}
+
 /* .beerdiv img:hover {
   opacity: 25%;
 } */
